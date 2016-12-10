@@ -13,9 +13,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table
 @NamedQueries({
-	@NamedQuery(name = "Movie.findAllByTitle", query = "SELECT mov FROM Movie ORDER BY title"),
+	@NamedQuery(name = "Movie.findAllByTitle", query = "SELECT mov FROM Movie mov ORDER BY title"),	
 	@NamedQuery(name = "Movie.findAllByYear", query = "SELECT mov FROM Movie ORDER BY year"),
-	@NamedQuery(name = "Movie.findAllByGenre", query = "SELECT mov FROM Movie ORDER BY genre")
+	@NamedQuery(name = "Movie.findAllByGenre", query = "SELECT mov FROM Movie mov ORDER BY genre"),
+	@NamedQuery(name = "Movie.findByTitle", query = "SELECT mov FROM Movie mov WHERE mov.title =:mTitle")
 })
 
 public class Movie {
@@ -30,6 +31,9 @@ public class Movie {
 	private String year;
 	private String genre;
 	
+	@Column(unique=true)
+	private String imdbID;
+		
 	public String getId() {
 		return id;
 	}
@@ -54,10 +58,16 @@ public class Movie {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
+	public String getImdbID() {
+		return imdbID;
+	}
+	public void setImdbID(String imdbID) {
+		this.imdbID = imdbID;
+	}
 	
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + ", title = ";
+		return "Movie [id=" + id + ", title=" + title + ", year=" + year + "]";
 	}
 	
 }
