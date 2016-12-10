@@ -23,7 +23,7 @@ public class JPAConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource());
-		emf.setPackagesToScan("io.vish.spring_rest.entity");
+		emf.setPackagesToScan("com.vish.sfmovies.entity");
 		JpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		emf.setJpaVendorAdapter(adapter);
 		emf.setJpaProperties(properties());
@@ -36,7 +36,7 @@ public class JPAConfig {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
 //		ds.setUrl("jdbc:mysql://localhost:3306/example-db");
-		ds.setUrl("jdbc:mysql://localhost:3306/vish_spring_db");
+		ds.setUrl("jdbc:mysql://localhost:3306/sfmovies_db");
 		ds.setUsername("root");
 		ds.setPassword("admin");
 		return ds;
