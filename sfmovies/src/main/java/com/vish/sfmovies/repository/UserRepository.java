@@ -6,9 +6,9 @@ public interface UserRepository {
 	
 	public UserDetails findOne(String id);
 			
-	public UserDetails create(UserDetails user);
+	public UserDetails create(UserDetails uUserDetails);
 	
-	public UserDetails update(UserDetails user);
+	public UserDetails update(UserDetails uUserDetails);
 	
-	public void delete(UserDetails user);
+	public void delete(UserDetails uUserDetails);
 }

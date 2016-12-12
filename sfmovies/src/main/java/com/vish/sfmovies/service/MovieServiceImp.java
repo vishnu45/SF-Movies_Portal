@@ -3,7 +3,8 @@ package com.vish.sfmovies.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.vish.sfmovies.entity.Movie;
-import com.vish.sfmovies.repository.EmployeeRepository;
+import com.vish.sfmovies.repository.MovieRepository;
+import com.vish.sfmovies.repository.UserRepository;
 
 public class MovieServiceImp implements MovieService {
 
@@ -11,7 +12,7 @@ public class MovieServiceImp implements MovieService {
 	MovieRepository mRepository;
 	
 	@Autowired 
-	EmployeeRepository uRepository;
+	UserRepository uRepository;
 	
 	// *************************** IMPLEMENTATION REMAINING
 	@Override

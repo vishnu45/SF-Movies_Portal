@@ -17,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 		@NamedQuery(name="UserDetails.findOne", query="SELECT usr FROM UserDetails usr WHERE usr.userName=:uUserName")
 })
 
-public class User {
+public class UserDetails {
 
 	@Id
 	@GenericGenerator(name="customUUID", strategy="uuid2")

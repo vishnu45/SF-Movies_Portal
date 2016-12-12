@@ -4,21 +4,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vish.sfmovies.entity.UserDetails;
-import com.vish.sfmovies.repository.EmployeeRepository;
+import com.vish.sfmovies.repository.UserRepository;
 import com.vish.sfmovies.exception.*;
 
 @Service
 public class UserServiceImp implements UserService{
 
 	@Autowired
-	EmployeeRepository repository;
+	UserRepository repository;
 
 	// ******************** implementation pending
 	@Override
 	public UserDetails findOne(String id) {
 		UserDetails existing = repository.findOne(id);
 		if (existing == null) {
-			throw new EmployeeAlreadyExistsException("User with id: " + id + " not found");
+			throw new UserAlreadyExistsException("User with id: " + id + " not found");
 		}
 		return existing;
 	}
@@ -29,16 +29,16 @@ public class UserServiceImp implements UserService{
 	public UserDetails create(UserDetails uUserDetails) {
 		
 		if (uUserDetails.getRole().equals("Admin")) {
-			throw new EmployeeNotFoundException("No admin allowed");			
+			throw new UserNotFoundException("No admin allowed");			
 		}
 		
 		else if (!uUserDetails.getRole().equals("User")) {
-			throw new EmployeeNotFoundException("Invalid role");			
+			throw new UserNotFoundException("Invalid role");			
 		}
 		
 		UserDetails existing = repository.findOne(uUserDetails.getUserName());
 		if (existing != null) {
-			throw new EmployeeNotFoundException("Employee with email: " + uUserDetails.getEmail() + " already exists");
+			throw new UserNotFoundException("Employee with email: " + uUserDetails.getEmail() + " already exists");
 		}
 		return repository.create(uUserDetails);
 	}
@@ -56,7 +56,7 @@ public class UserServiceImp implements UserService{
 	public void delete(String id) {
 		UserDetails existing = repository.findOne(id);
 		if (existing == null) {
-			throw new EmployeeAlreadyExistsException("Employee with id: " + id + " not found");
+			throw new UserAlreadyExistsException("Employee with id: " + id + " not found");
 		}
 		repository.delete(existing);
 	}
